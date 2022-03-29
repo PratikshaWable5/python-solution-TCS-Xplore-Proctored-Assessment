@@ -1,0 +1,45 @@
+class Account:
+    def __init__(self,name,curr_bal):
+       self.name= name
+       self.curr_bal= curr_bal
+
+    def deposit_money(self,amount_dep_or_with):
+        self.curr_bal =  self.curr_bal + amount_dep_or_with
+        return self.curr_bal
+
+    def withdraw_money(self,amount_dep_or_with):
+        self.curr_bal =  self.curr_bal - amount_dep_or_with
+        return self.curr_bal
+
+class UpdateAccount:
+    def __init__(self,cname, acc_list):
+        self.cname=cname
+
+    def depOrWithdrawal(self,name,dep_or_withdrawal,amount_dep_or_with ):
+        for i in acc_list:
+            if i.name == name:
+                if dep_or_withdrawal =='deposit':
+                    return i.deposit_money(amount_dep_or_with)
+                else:
+                    if i.curr_bal - amount_dep_or_with  >=1000:
+                        return i.withdraw_money(amount_dep_or_with)
+                    else:
+                        return 'Insufficient Balanced'
+
+#main function
+
+if __name__=='__main__':
+    people_count= int(input())
+    acc_list=[]
+    for i in range(people_count):
+        name=input()
+        curr_bal= int(input())
+        acc_list.append(Account(name,curr_bal))
+    
+    name= input('enter update name: ')
+    dep_or_withdrawal = input('want to deposit or withdrawal: ')
+    amount_dep_or_with = int(input('enter amount to deposit and withdrawal: '))
+
+    k = UpdateAccount('abc',acc_list)  #object
+    res= k.depOrWithdrawal(name, dep_or_withdrawal,amount_dep_or_with)
+    print(res)
