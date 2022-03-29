@@ -1,0 +1,13 @@
+class tri:
+    # peri=0
+    def __init__(self,a,b,c):  #similar to constructor in c++----is executed when the class is being initiated
+        self.a=a
+        self.b=b
+        self.c=c
+    def add(self):
+        peri= self.a+self.b+self.c 
+        return peri
+
+t1 = tri(3,4,5)  #object creation
+peri = t1.add()   #method calling
+print('peri:',peri)
