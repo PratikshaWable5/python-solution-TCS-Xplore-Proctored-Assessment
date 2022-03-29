@@ -1,0 +1,49 @@
+class Doctor:
+    def __init__(self, d_id, d_name, d_spe, c_fee, ):
+        self.d_id= d_id
+        self.d_name= d_name
+        self.d_spe= d_spe
+        self.c_fee = c_fee
+
+class Hospital:
+
+    def s_doc_name(self,d_name,d_db):
+        count=0
+        for i in d_db.values():
+            if i.d_name == d_name:
+                count = count+1
+                print(i.d_id,' ', i.d_name)
+                # print(i.d_name)
+                # print(i.d_spec)
+                # print(i.c_fee)
+        if count==0:
+            print('no doctor with the given doctor name')
+
+    def cal_c_fee(self,d_spec,d_db):
+        totalfee=0
+        for i in d_db.values():
+            if i.d_spe == d_spe:
+                totalfee += i.c_fee
+        if totalfee ==0:
+            print('No doctor with given specilization')
+        else:
+            print(totalfee)
+
+
+if __name__=='__main__':
+    count = int(input('Enter count of doc: '))
+    d_db = {}
+    for i in range(count):
+        d_id = int(input())
+        d_name= input()
+        d_spe = input()
+        c_fee = int(input())
+        d_db[i] = Doctor(d_id, d_name, d_spe, c_fee)
+        
+h = Hospital() # creating obj
+d_name = input('enter doc name:')
+d_spe=input('enter spec of doc: ')
+h.s_doc_name(d_name,d_db)
+h.cal_c_fee(d_spe, d_db)
+
+
