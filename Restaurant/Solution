@@ -1,0 +1,48 @@
+class FoodItem:
+    def __init__(self, item_id, item_name,  item_cat, item_price):
+        self.item_id= item_id
+        self.item_cat= item_cat
+        self.item_name = item_name
+        self.item_price= item_price
+
+
+    def provideDiscount(self,percentage):
+        self.item_price = self.item_price - ((self.item_price*percentage)/100)
+        return self.item_price
+      
+class Restaurant:
+    def __init__(self,res_name, food_item_list):
+        self.res_name= res_name
+        self.food_item_list= food_item_list
+
+    def retrieveUpdatedPrice(self,item_id,percentage):
+        flag =0
+        if percentage>0:
+            for i in self.food_item_list:
+                if i.item_id == item_id:
+                    flag =1
+                    price =i.provideDiscount(percentage)
+                    print(i.item_name+"- "+ str(price))
+        else:
+            for i in self.food_item_list:
+                flag=1
+                print(i.item_name +'- '+ str(i.item_price))
+        if flag==0:
+            print('not exit in food item list')
+
+if __name__=='__main__':
+
+    count = int(input())
+    food_item_list =[]
+    
+    for i in range(count):
+        item_id = int(input())
+        item_name= input()
+        item_cat = input()
+        item_price= int(input())
+        food_item_list.append(FoodItem(item_id, item_name, item_cat, item_price))
+
+    item_id= int(input('enter item id :'))
+    percentage = int(input('enter percentage: '))
+    k = Restaurant('abc',food_item_list)
+    k.retrieveUpdatedPrice(item_id,percentage)
