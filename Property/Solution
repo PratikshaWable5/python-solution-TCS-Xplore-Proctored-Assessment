@@ -1,0 +1,83 @@
+class Painting:
+    def __init__(self, Painting_id, Painting_name, painting_price, painting_type ):
+
+        self.Painting_id=Painting_id
+        self.Painting_name = Painting_name
+        self.painting_price = painting_price
+        self.painting_type = painting_type
+
+class ShowRoom:
+    def __init__(self, Painting_list):
+        self.Painting_list = Painting_list
+
+    def get_Total_Painting_Price(self,p_type):
+        total_price=0
+        flag=0
+        for i in self.Painting_list:
+            if i.painting_type == p_type:
+                flag=1
+                total_price = total_price+i.painting_price
+        if flag:
+            return total_price
+        return None
+
+    def get_Painter_with_max_Count_Paintings(self):
+        name_count={}
+        list1=[]
+
+        for i in self.Painting_list:
+            if i.Painting_name in name_count:
+                name_count[i.Painting_name] +=1
+            else:
+                name_count[i.Painting_name] =1
+
+            # sort dic
+
+        sort  = sorted(name_count.items(),key =lambda x : x[1])
+        val = sort[-1][1]
+
+
+        for value in sort:
+            if val== value[1]:
+                list1.append(value[0])
+
+        if len(list1) >1:
+            list1.sort()
+            return list1[0]
+        else:
+            return sort[-1][0]
+
+
+
+
+# main function
+
+if __name__=="__main__":
+    count_painting= int(input())
+    Painting_list = []
+
+    for i in range(count_painting):
+        Painting_id= input().lower()
+        Painting_name= input().lower()
+        painting_price= int(input())
+        painting_type = input().lower()
+
+        Painting_obj= Painting(Painting_id, Painting_name, painting_price, painting_type)
+        Painting_list.append(Painting_obj)
+
+
+# show room object
+
+ShowRoom_obj = ShowRoom(Painting_list)
+
+p_type = input().lower()
+price = ShowRoom_obj.get_Total_Painting_Price(p_type)
+if price:
+    print(price)
+else:
+    print('Pinting not found')
+
+# method called
+
+name = ShowRoom_obj.get_Painter_with_max_Count_Paintings()
+print(name)
