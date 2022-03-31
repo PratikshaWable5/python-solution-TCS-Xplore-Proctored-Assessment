@@ -1,0 +1,57 @@
+class Traveler:
+    def __init__(self,Traveler_name, Traveler_country_name, Traveler_age, Country_form):
+        self.Traveler_name = Traveler_name
+        self.Traveler_country_name = traveler_country_name
+        self.Traveler_age = Traveler_age
+        self.Country_form = Country_form
+
+
+class Travel_agency:
+    def __init__(self,Traveler_list,traveler_country_name):
+        self.Traveler_list = Traveler_list
+        self.Traveler_country_name = traveler_country_name
+
+    def count_travelers_Traveled_country(self,name_of_country):
+        count=0
+        for i in Traveler_list:
+            for j in range(len(i.Traveler_country_name)):
+                if i.Traveler_country_name[j] ==name_of_country:
+                    count= count+1
+        return count
+
+    def get_traveler_travelled_max_country(self):
+        count=0
+        name=''
+        for i in Traveler_list:
+            if len(i.Traveler_country_name)>count:
+                count= len(i.Traveler_country_name)
+                name= i.Traveler_name
+        return name
+
+
+if __name__ == "__main__":
+    Traveler_list=[]
+    num_traveler = int(input())
+
+    for i in range(num_traveler):
+        traveler_country_name = []
+        Traveler_name  = input()
+
+
+        count_country = int(input())
+        for j in range(count_country):
+            Traveler_country= input()
+            traveler_country_name.append(Traveler_country)
+
+        Traveler_age = int(input())
+        Country_form = input()
+
+        traveler_obj= Traveler(Traveler_name,traveler_country_name,Traveler_age, Country_form )
+        Traveler_list.append(traveler_obj)
+    name_of_country = input()
+
+
+    Travel_agency_obj =  Travel_agency(Traveler_list,traveler_country_name)
+    print(Travel_agency_obj.count_travelers_Traveled_country(name_of_country))
+    print(Travel_agency_obj.get_traveler_travelled_max_country())
+
